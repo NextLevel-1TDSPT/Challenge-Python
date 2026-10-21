@@ -58,17 +58,40 @@ while True:
                         print("Opção inválida. Digite apenas números.")
 
             # ---------- OPÇÃO 2: PRECISO DE AJUDA ----------
+
             case 2:
+                print("\nA ONG Turma do Bem oferece ajuda à pessoas em situação de vulnerabilidade socio-econômica.\n - O programa Dentista do Bem, atende jovens de 11 à 17 anos;\n - O programa Apolônias do Bem, oferece ajuda à mulheres cis e trans vítimas de agressões físicas.")
                 nome = input("\nQual o seu nome? ")
                 idade = input("\nQual a sua idade? ")
+                genero = input("\nQual é o seu gênero?(Digite o número)\n 1- Feminino\n 2- Masculino\n 3- Não-binário\n 4- Outro\n")
+
+                match genero:
+                    case "1":
+                        genero = "Feminino"
+                    case "2":
+                        genero = "Masculino"
+                    case "3":
+                        genero = "Não-binário"
+                    case "4":
+                        genero = "Outro"
+                    case _:
+                        print("\nOpção inválida, digite uma das opções.\n")
+                        continue
 
                 if idade.isdigit():
                     idade = int(idade)
-                    # Regra de negócio: A ong atende pessoas em vulnerabilidade sócio econömica entre 11 e 17 anos
+                    # Regra de negócio: A ong atende pessoas em vulnerabilidade sócio econômica entre 11 e 17 anos
                     if idade <= 17 and idade >= 11:
-                        print(f"Olá, {nome} com {idade} anos, você pode receber tratamentos pela ong entre em contato pelo site https://turmadobem.org.br/contato/")
+                        print(f"Olá, {nome} com {idade} anos do gênero {genero}, você pode receber tratamentos pela ong entre em contato pelo site:\n - https://turmadobem.org.br/contato/")
+
+                    elif idade < 11 or idade > 17 and genero == "Feminino":
+                        entrar = str(input("O programa Apolônias do Bem, oferece ajuda à mulheres cis e trans vítimas de agressões físicas.\n Gostaria de fazer parte?(sim ou não)? ")).lower()
+                        if entrar == "sim":
+                            print("Ao entrar em contato com a Tdb pelo WhatsApp 11 98965-8599, será solicitado um B.O. (Boletim de Ocorrência) da agressão sofrida e, posteriormente, ocorrerá uma entrevista e o exame clínico.")
+                        elif entrar == "não" or entrar == "nao":
+                                print(f"Infelizmente {nome} com {idade} anos do gênero {genero}, não é possível se cadastrar no programa Dentista do Bem. Atendemos apenas na faixa de 11 a 17 anos")
                     else:
-                        print(f"Infelizmente {nome} com {idade} anos, não é possível se cadastrar no programa. Atendemos apenas na faixa de 11 a 17 anos")
+                        print(f"Infelizmente {nome} com {idade} anos do gênero {genero}, não é possível se cadastrar no programa Dentista do Bem. Atendemos apenas na faixa de 11 a 17 anos")
                 else:
                     print("Idade inválida! Digite apenas números.")
 
